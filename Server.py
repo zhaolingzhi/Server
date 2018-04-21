@@ -1,6 +1,7 @@
 import socket
 import json
 import threading
+import demjson
 
 end="END"
 def detect(sock,addr):
@@ -11,16 +12,16 @@ def detect(sock,addr):
     data = []
     count=1
     while True:
-        print "recv"
         temp=sock.recv(8192)
-        print "recv data %d"%count
-        count+=1
         if end in temp:
             data.append(temp[:temp.find(end)])
             break
         data.append(temp)
+    JsonDate=''
+    for each in data:
+        JsonDate+=each
+    print JsonDate
     print len(data)
-
 
     sock.sendall(json.dumps(info))
     sock.close()

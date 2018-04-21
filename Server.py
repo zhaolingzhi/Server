@@ -21,6 +21,7 @@ def detect(sock,addr):
         data.append(temp)
     print len(data)
 
+
     sock.sendall(json.dumps(info))
     sock.close()
     print "connect from %s:%s closed"%addr
